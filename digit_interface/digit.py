@@ -57,7 +57,7 @@ class Digit(DigitDefaults):
             logger.debug(f"Digit object constructed with serial {self.serial}")
             self.populate(serial)
 
-    def connect(self) -> None:
+    def connect(self, LED_intensity=15) -> None:
         logger.info(f"{self.serial}:Connecting to DIGIT")
         self.__dev = cv2.VideoCapture(self.dev_name)
         if not self.__dev.isOpened():
@@ -74,7 +74,7 @@ class Digit(DigitDefaults):
         logger.debug(f"Default stream with {self.STREAMS['QVGA']['fps']['60fps']} fps")
         self.set_fps(self.STREAMS["QVGA"]["fps"]["60fps"])
         logger.debug("Setting maximum LED illumination intensity")
-        self.set_intensity(15)
+        self.set_intensity(LED_intensity)
 
     def set_resolution(self, resolution: typing.Dict) -> None:
         """
